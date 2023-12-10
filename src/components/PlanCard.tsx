@@ -1,6 +1,5 @@
 import { FC, useState } from "react";
 import { Person } from "../models/Person";
-import TrashIcon from "./TrashIcon";
 
 interface PlanCardProps {
     person: Person;
