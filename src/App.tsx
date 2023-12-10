@@ -4,6 +4,7 @@ import { Person } from "./models/Person";
 import PlanCard from "./components/PlanCard";
 import NewPlanPerson from "./components/NewPlanPerson";
 import Card from "./components/Card";
+import Summary from "./components/Summary";
 
 const App = () => {
     const [plan, setPlan] = useState<Plan>(new Plan());
@@ -67,18 +68,18 @@ const App = () => {
     };
 
     const editPriceForKeyword = (price: number, keyword: string): void => {
-      for (let i = 0; i < localStorage.length; i++) {
-          const key = localStorage.key(i);
-          if (key?.startsWith("person_")) {
-              const tempPerson = Person.fromJson(localStorage.getItem(key)!);
-              if (tempPerson.orderName == keyword) {
-                  tempPerson.price = price;
-                  localStorage.setItem(key, tempPerson.toJson());
-              }
-          }
-      }
-      init();
-  };
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (key?.startsWith("person_")) {
+                const tempPerson = Person.fromJson(localStorage.getItem(key)!);
+                if (tempPerson.orderName == keyword) {
+                    tempPerson.price = price;
+                    localStorage.setItem(key, tempPerson.toJson());
+                }
+            }
+        }
+        init();
+    };
 
     const orderNameKeywords = (input: string) => [
         ...new Set(
@@ -93,19 +94,21 @@ const App = () => {
     ];
 
     return (
-        <div className="px-10 py-5">
-            {plan.persons.length > 0 && (
+        <div className="px-3 py-2">
+            {/* {plan.persons.length > 0 && (
                 <Card>
                     <div className="flex text-xl">
-                        <div className="w-2/12">Име</div>
-                        <div className="w-2/12">Нарачка</div>
-                        <div className="w-2/12">Платил</div>
-                        <div className="w-2/12">Цена</div>
-                        <div className="w-2/12">За враќање</div>
-                        <div className="w-2/12">Исплатено</div>
+                        <div className="w-2/6">Име</div>
+                        <div className="w-2/6">Нарачка</div>
+                        <div className="w-2/6">Исплатено</div>
+                    </div>
+                    <div className="flex text-xl">
+                        <div className="w-2/6">Цена</div>
+                        <div className="w-2/6">Платил</div>
+                        <div className="w-2/6">За враќање</div>
                     </div>
                 </Card>
-            )}
+            )} */}
             {plan.persons.map((person) => (
                 <Card key={person.id}>
                     <PlanCard
@@ -122,6 +125,9 @@ const App = () => {
                     addNewPerson={addNewPerson}
                     orderNameKeywords={orderNameKeywords}
                 />
+            </Card>
+            <Card>
+                <Summary plan={plan} />
             </Card>
         </div>
     );

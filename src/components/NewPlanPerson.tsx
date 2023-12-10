@@ -37,34 +37,32 @@ const NewPlanPerson: FC<NewPlanPerson> = ({
 
     return (
         <div className="text-xl">
-            <div className="flex mb-2">
-                <div className="w-1/2 mr-2">
-                    <div className="flex justify-between">
-                        <div className="mr-3">Име:</div>
-                        <input
-                            className="py-1.5 px-2 rounded border-2 border-gray-500"
-                            type="text"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                    </div>
+            <div className="mb-2">
+                <div className="flex justify-between">
+                    <div className="mr-3">Име:</div>
+                    <input
+                        className="py-1.5 px-2 rounded border-2 border-gray-500"
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
                 </div>
-                <div className="w-1/2 ml-2">
-                    <div className="flex justify-between">
-                        <div className="mr-3">Нарачка:</div>
-                        <input
-                            className="py-1.5 px-2 rounded border-2 border-gray-500"
-                            type="text"
-                            value={orderName}
-                            onChange={(e) => setOrderName(e.target.value)}
-                            onFocus={() => setIsOrderNameFocused(true)}
-                            onBlur={() => {
-                                setTimeout(() => {
-                                    setIsOrderNameFocused(false);
-                                }, 100);
-                            }}
-                        />
-                    </div>
+            </div>
+            <div className="mb-2">
+                <div className="flex justify-between">
+                    <div className="mr-3">Нарачка:</div>
+                    <input
+                        className="py-1.5 px-2 rounded border-2 border-gray-500"
+                        type="text"
+                        value={orderName}
+                        onChange={(e) => setOrderName(e.target.value)}
+                        onFocus={() => setIsOrderNameFocused(true)}
+                        onBlur={() => {
+                            setTimeout(() => {
+                                setIsOrderNameFocused(false);
+                            }, 100);
+                        }}
+                    />
                 </div>
             </div>
             {isOrderNameFocused &&
@@ -86,31 +84,29 @@ const NewPlanPerson: FC<NewPlanPerson> = ({
                         )}
                     </div>
                 )}
-            <div className="flex">
-                <div className="w-1/2 mr-2">
-                    <div className="flex justify-between">
-                        <div className="mr-3">Платил:</div>
-                        <input
-                            className="py-1.5 px-2 rounded border-2 border-gray-500"
-                            type="number"
-                            value={gave}
-                            onChange={(e) => {
-                                const { value } = e.target;
-                                if (value.startsWith("0") && value.length > 1) {
-                                    e.target.value = parseInt(value).toString();
-                                }
-                                setGave(parseInt(value) || 0);
-                            }}
-                        />
-                    </div>
+            <div className="mb-2">
+                <div className="flex justify-between">
+                    <div className="mr-3">Платил:</div>
+                    <input
+                        className="py-1.5 px-2 rounded border-2 border-gray-500"
+                        type="number"
+                        value={gave}
+                        onChange={(e) => {
+                            const { value } = e.target;
+                            if (value.startsWith("0") && value.length > 1) {
+                                e.target.value = parseInt(value).toString();
+                            }
+                            setGave(parseInt(value) || 0);
+                        }}
+                    />
                 </div>
-                <button
-                    className="w-1/2 ml-2 border-2 rounded bg-red-500 border-red-600 hover:bg-red-400"
-                    onClick={handleAddPerson}
-                >
-                    Додади
-                </button>
             </div>
+            <button
+                className="w-full py-2 px-5 border-2 rounded bg-blue-500 border-blue-600 hover:bg-blue-400"
+                onClick={handleAddPerson}
+            >
+                Додади
+            </button>
         </div>
     );
 };

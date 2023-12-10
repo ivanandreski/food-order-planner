@@ -20,6 +20,10 @@ const PlanCard: FC<PlanCardProps> = ({
     const [editMode, setEditMode] = useState<boolean>(false);
 
     const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { value } = e.target;
+        if (value.startsWith("0") && value.length > 1) {
+            e.target.value = parseInt(value).toString();
+        }
         const newPrice = parseInt(e.target.value) || 0;
         editPriceForKeyword(newPrice, person.orderName);
     };
@@ -38,11 +42,21 @@ const PlanCard: FC<PlanCardProps> = ({
         editPerson(person);
     };
 
+    const handleGaveChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { value } = e.target;
+        if (value.startsWith("0") && value.length > 1) {
+            e.target.value = parseInt(value).toString();
+        }
+        const newPrice = parseInt(e.target.value) || 0;
+        person.gave = newPrice;
+        editPerson(person);
+    };
+
     return (
         <>
-            <div className="flex text-xl">
-                <div className="w-2/12">{person.name}</div>
-                <div className="w-2/12">
+            <div className="flex justify-between text-xl">
+                <div className="">{person.name}</div>
+                <div className="">
                     <button
                         className="px-2 py-1 bg-gray-300 border rounded border-gray-600 hover:bg-gray-200"
                         onClick={() => setEditMode((editMode) => !editMode)}
@@ -50,34 +64,10 @@ const PlanCard: FC<PlanCardProps> = ({
                         {person.orderName}
                     </button>
                 </div>
-                <div className="w-2/12">{person.gave} ДЕН</div>
-                <div className="w-2/12">
-                    <input
-                        type="number"
-                        className="w-11/12 py-1.5 px-2 rounded border-2 border-gray-500"
-                        value={person.price}
-                        onChange={handlePriceChange}
-                    />
-                </div>
-                <div className="w-2/12">{person.getReturnAmount()}</div>
-                <div className="w-2/12 flex">
-                    <input
-                        type="checkbox"
-                        className="w-1/2"
-                        checked={person.moneyReturned}
-                        onChange={handleCheckboxChange}
-                    />
-                    <button
-                        className="w-1/2 py-2 px-5 bg-red-500 hover:bg-red-400 border rounded border-red-600"
-                        onClick={() => deletePerson(person)}
-                    >
-                        <TrashIcon />
-                    </button>
-                </div>
             </div>
             {editMode && (
-                <div className="flex text-xl">
-                    <div className="w-2/12">
+                <div className="text-xl mt-2">
+                    <div className="w-full mb-2">
                         <input
                             type="text"
                             className="w-full py-1.5 px-2 rounded border-2 border-gray-500"
@@ -85,15 +75,15 @@ const PlanCard: FC<PlanCardProps> = ({
                             onChange={handleOrderNameChange}
                         />
                     </div>
-                    <div className="w-10/12">
+                    <div className="w-full">
                         {person.orderName.length > 0 &&
                             orderNameKeywords(person.orderName).length > 0 && (
-                                <div className="mb-2">
+                                <div className="">
                                     {orderNameKeywords(person.orderName).map(
                                         (orderNameKeyword) => (
                                             <button
                                                 key={orderNameKeyword}
-                                                className="border ml-2 px-2 py-1 rounded bg-red-500 border-red-600 hover:bg-red-400"
+                                                className="border mr-2 px-2 py-1 rounded bg-red-500 border-red-600 hover:bg-red-400"
                                                 onClick={() =>
                                                     changeOrderName(
                                                         orderNameKeyword
@@ -109,6 +99,51 @@ const PlanCard: FC<PlanCardProps> = ({
                     </div>
                 </div>
             )}
+            <div className="text-xl mt-2">
+                <div className="flex justify-between mt-2">
+                    <div>Платил: </div>
+                    <div>
+                        <input
+                            type="number"
+                            className="w-full py-1.5 px-2 rounded border-2 border-gray-500"
+                            value={person.gave}
+                            onChange={handleGaveChange}
+                        />
+                    </div>
+                </div>
+                <div className="flex justify-between mt-2">
+                    <div>Цена: </div>
+                    <div>
+                        <input
+                            type="number"
+                            className="w-full py-1.5 px-2 rounded border-2 border-gray-500"
+                            value={person.price}
+                            onChange={handlePriceChange}
+                        />
+                    </div>
+                </div>
+                <div className="flex justify-between mt-2">
+                    <div>За враќање: </div>
+                    <div>{person.getReturnAmount()}</div>
+                </div>
+                <div className="flex justify-between mt-2">
+                    <div>Вратено: </div>
+                    <div>
+                        <input
+                            type="checkbox"
+                            className="w-10 h-10"
+                            checked={person.moneyReturned}
+                            onChange={handleCheckboxChange}
+                        />
+                    </div>
+                </div>
+                <button
+                    className="w-full py-2 px-5 bg-red-500 hover:bg-red-400 border rounded border-red-600"
+                    onClick={() => deletePerson(person)}
+                >
+                    Избриши
+                </button>
+            </div>
         </>
     );
 };
