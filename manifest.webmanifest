@@ -1,0 +1,1 @@
+{"name":"food order","short_name":"food order","start_url":"/","display":"standalone","background_color":"#ffffff","lang":"en","scope":"/","description":"app for planning food orders","icons":[{"src":"./src/assets/react.svg","type":"image/svg"}]}
