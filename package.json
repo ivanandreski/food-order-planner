@@ -2,7 +2,7 @@
   "name": "food-order-planner",
   "private": true,
   "version": "1.0.0",
-  "homepage": "https://ivanandreski.github.io/food-order-planner",
+  "homepage": "https://ivanandreski.github.io/food-order-planner/",
   "type": "module",
   "scripts": {
     "dev": "vite",
