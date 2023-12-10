@@ -1,4 +1,4 @@
-https://ivanandreski.github.io/food-order-planner/
+[https://ivanandreski.github.io/food-order-planner/](https://ivanandreski.github.io/food-order-planner/)
 
 # React + TypeScript + Vite
 
