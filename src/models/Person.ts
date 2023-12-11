@@ -21,7 +21,7 @@ export class Person {
         this.orderName = orderName;
         this.gave = gave;
         this.price = price;
-        this.moneyReturned = moneyReturned || gave - price == 0;
+        this.moneyReturned = moneyReturned || false;
     }
 
     getReturnAmount(): string {
