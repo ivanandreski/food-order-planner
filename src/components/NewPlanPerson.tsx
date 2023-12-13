@@ -60,7 +60,7 @@ const NewPlanPerson: FC<NewPlanPerson> = ({
                         onBlur={() => {
                             setTimeout(() => {
                                 setIsOrderNameFocused(false);
-                            }, 100);
+                            }, 500);
                         }}
                     />
                 </div>

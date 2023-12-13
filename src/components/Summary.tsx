@@ -27,7 +27,7 @@ const Summary: FC<SummaryProps> = ({ plan }) => {
         <div className="text-xl">
             <div className="my-3 border-b-2 border-gray-500">Нарачка: </div>
             {Object.keys(orderNameCounts).map((orderName) => (
-                <div className="flex justify-between">
+                <div key={orderName} className="flex justify-between">
                     <div>{orderName}</div>
                     <div>X {orderNameCounts[orderName]}</div>
                 </div>

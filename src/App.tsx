@@ -95,21 +95,16 @@ const App = () => {
 
     return (
         <div className="px-3 py-2">
-            {/* {plan.persons.length > 0 && (
-                <Card>
-                    <div className="flex text-xl">
-                        <div className="w-2/6">Име</div>
-                        <div className="w-2/6">Нарачка</div>
-                        <div className="w-2/6">Исплатено</div>
-                    </div>
-                    <div className="flex text-xl">
-                        <div className="w-2/6">Цена</div>
-                        <div className="w-2/6">Платил</div>
-                        <div className="w-2/6">За враќање</div>
-                    </div>
-                </Card>
-            )} */}
-            {plan.persons.map((person) => (
+            {plan.persons
+            .sort((person1, person2) => {
+                if(person1.id > person2.id)
+                    return 1;
+                if(person1.id < person2.id)
+                    return -1;
+
+                    return 0;
+            })
+            .map((person) => (
                 <Card key={person.id}>
                     <PlanCard
                         person={person}
