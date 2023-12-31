@@ -20,10 +20,7 @@ const PlanCard: FC<PlanCardProps> = ({
 
     const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
-        if (value.startsWith("0") && value.length > 1) {
-            e.target.value = parseInt(value).toString();
-        }
-        const newPrice = parseInt(e.target.value) || 0;
+        const newPrice = parseInt(value) || 0;
         editPriceForKeyword(newPrice, person.orderName);
     };
 
@@ -43,10 +40,7 @@ const PlanCard: FC<PlanCardProps> = ({
 
     const handleGaveChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
-        if (value.startsWith("0") && value.length > 1) {
-            e.target.value = parseInt(value).toString();
-        }
-        const newPrice = parseInt(e.target.value) || 0;
+        const newPrice = parseInt(value) || 0;
         person.gave = newPrice;
         editPerson(person);
     };
@@ -103,7 +97,7 @@ const PlanCard: FC<PlanCardProps> = ({
                     <div>Платил: </div>
                     <div>
                         <input
-                            type="number"
+                            type="text"
                             className="w-full py-1.5 px-2 rounded border-2 border-gray-500"
                             value={person.gave}
                             onChange={handleGaveChange}
@@ -114,7 +108,7 @@ const PlanCard: FC<PlanCardProps> = ({
                     <div>Цена: </div>
                     <div>
                         <input
-                            type="number"
+                            type="text"
                             className="w-full py-1.5 px-2 rounded border-2 border-gray-500"
                             value={person.price}
                             onChange={handlePriceChange}

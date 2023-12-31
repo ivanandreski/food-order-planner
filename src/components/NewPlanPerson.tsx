@@ -1,8 +1,7 @@
 import { FC, useState } from "react";
-import { Person } from "../models/Person";
 
 interface NewPlanPerson {
-    addNewPerson: (person: Person) => void;
+    addNewPerson: (name: string, orderName: string, gave: string) => void;
     orderNameKeywords: (input: string) => string[];
 }
 
@@ -21,13 +20,11 @@ const NewPlanPerson: FC<NewPlanPerson> = ({
         setName("");
         setOrderName("");
         setGave("");
-    };
+    };  
 
     const handleAddPerson = (): void => {
         if (name.length > 0 && orderName.length > 0) {
-            const gaveNum = isNaN(Number(gave)) ? 0 : Number(gave);
-            const person = new Person(null, name, orderName, gaveNum, 0, null);
-            addNewPerson(person);
+            addNewPerson(name, orderName, gave);
             reset();
         }
     };
