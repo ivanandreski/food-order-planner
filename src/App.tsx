@@ -87,7 +87,7 @@ const App = () => {
                 .map((person) => person.orderName)
                 .filter(
                     (orderName) =>
-                        orderName.toLowerCase().includes(input.toLowerCase()) &&
+                        orderName.toLowerCase().startsWith(input.toLowerCase()) &&
                         orderName != input
                 )
         ),
