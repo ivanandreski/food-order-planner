@@ -27,7 +27,7 @@ const App = () => {
 
     const addNewPerson = (name: string, orderName: string, gave: string): void => {
         const gaveNum = parseInt(gave) || 0;
-        const existingPrice = plan.persons.find(p => p.orderName == orderName)?.price || 0;
+        const existingPrice = plan.persons.find(p => p.orderName.toLowerCase() == orderName.toLowerCase())?.price || 0;
         const person = new Person(null, name, orderName, gaveNum, existingPrice, null);
 
         let i = 0;
