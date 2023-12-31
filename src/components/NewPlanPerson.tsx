@@ -20,7 +20,7 @@ const NewPlanPerson: FC<NewPlanPerson> = ({
         setName("");
         setOrderName("");
         setGave("");
-    };  
+    };
 
     const handleAddPerson = (): void => {
         if (name.length > 0 && orderName.length > 0) {
@@ -90,11 +90,7 @@ const NewPlanPerson: FC<NewPlanPerson> = ({
                         type="text"
                         value={gave}
                         onChange={(e) => {
-                            const { value } = e.target;
-                            if (value.startsWith("0") && value.length > 1) {
-                                e.target.value = parseInt(value).toString();
-                            }
-                            setGave(parseInt(value) || 0);
+                            setGave(e.target.value);
                         }}
                     />
                 </div>
