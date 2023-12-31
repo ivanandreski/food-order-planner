@@ -12,7 +12,7 @@ const NewPlanPerson: FC<NewPlanPerson> = ({
 }) => {
     const [name, setName] = useState<string>("");
     const [orderName, setOrderName] = useState<string>("");
-    const [gave, setGave] = useState<number>(0);
+    const [gave, setGave] = useState<string>("");
 
     const [isOrderNameFocused, setIsOrderNameFocused] =
         useState<boolean>(false);
@@ -20,12 +20,13 @@ const NewPlanPerson: FC<NewPlanPerson> = ({
     const reset = (): void => {
         setName("");
         setOrderName("");
-        setGave(0);
+        setGave("");
     };
 
     const handleAddPerson = (): void => {
         if (name.length > 0 && orderName.length > 0) {
-            const person = new Person(null, name, orderName, gave, 0, null);
+            const gaveNum = isNaN(Number(gave)) ? 0 : Number(gave);
+            const person = new Person(null, name, orderName, gaveNum, 0, null);
             addNewPerson(person);
             reset();
         }
@@ -89,7 +90,7 @@ const NewPlanPerson: FC<NewPlanPerson> = ({
                     <div className="mr-3">Платил:</div>
                     <input
                         className="py-1.5 px-2 rounded border-2 border-gray-500"
-                        type="number"
+                        type="text"
                         value={gave}
                         onChange={(e) => {
                             const { value } = e.target;
