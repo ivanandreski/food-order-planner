@@ -30,7 +30,7 @@ const PlanCard: FC<PlanCardProps> = ({
     };
 
     const handleOrderNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        changeOrderName(e.target.value);
+        changeOrderName(e.target.value?.toString() || "");
     };
 
     const changeOrderName = (orderName: string) => {
@@ -79,7 +79,7 @@ const PlanCard: FC<PlanCardProps> = ({
                                                 className="border mr-2 px-2 py-1 rounded bg-red-500 border-red-600 hover:bg-red-400"
                                                 onClick={() =>
                                                     changeOrderName(
-                                                        orderNameKeyword
+                                                        orderNameKeyword.toString()
                                                     )
                                                 }
                                             >
